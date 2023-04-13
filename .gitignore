@@ -1,0 +1,7 @@
+*.h
+*.cpp
+*.o
+*.so
+*.pyc
+*.pth
+.vscode/*
