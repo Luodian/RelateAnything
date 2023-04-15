@@ -189,6 +189,7 @@ class SamAutomaticMaskGenerator:
                 "point_coords": [mask_data["points"][idx].tolist()],
                 "stability_score": mask_data["stability_score"][idx].item(),
                 "crop_box": box_xyxy_to_xywh(mask_data["crop_boxes"][idx]).tolist(),
+                "feat": mask_data["feats"][idx].tolist(),
             }
             curr_anns.append(ann)
 
@@ -276,7 +277,7 @@ class SamAutomaticMaskGenerator:
         transformed_points = self.predictor.transform.apply_coords(points, im_size)
         in_points = torch.as_tensor(transformed_points, device=self.predictor.device)
         in_labels = torch.ones(in_points.shape[0], dtype=torch.int, device=in_points.device)
-        masks, iou_preds, _ = self.predictor.predict_torch(
+        masks, iou_preds, _, feats = self.predictor.predict_torch(
             in_points[:, None, :],
             in_labels[:, None],
             multimask_output=True,
@@ -285,6 +286,7 @@ class SamAutomaticMaskGenerator:
 
         # Serialize predictions and store in MaskData
         data = MaskData(
+            feats=feats.flatten(0, 1),
             masks=masks.flatten(0, 1),
             iou_preds=iou_preds.flatten(0, 1),
             points=torch.as_tensor(points.repeat(masks.shape[1], axis=0)),

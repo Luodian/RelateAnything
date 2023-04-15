@@ -151,7 +151,7 @@ class SamPredictor:
             mask_input_torch = torch.as_tensor(mask_input, dtype=torch.float, device=self.device)
             mask_input_torch = mask_input_torch[None, :, :, :]
 
-        masks, iou_predictions, low_res_masks = self.predict_torch(
+        masks, iou_predictions, low_res_masks, mask_tokens = self.predict_torch(
             coords_torch,
             labels_torch,
             box_torch,
@@ -163,7 +163,7 @@ class SamPredictor:
         masks = masks[0].detach().cpu().numpy()
         iou_predictions = iou_predictions[0].detach().cpu().numpy()
         low_res_masks = low_res_masks[0].detach().cpu().numpy()
-        return masks, iou_predictions, low_res_masks
+        return masks, iou_predictions, low_res_masks, mask_tokens
 
     @torch.no_grad()
     def predict_torch(
@@ -226,7 +226,7 @@ class SamPredictor:
         )
 
         # Predict masks
-        low_res_masks, iou_predictions = self.model.mask_decoder(
+        low_res_masks, iou_predictions, mask_tokens = self.model.mask_decoder(
             image_embeddings=self.features,
             image_pe=self.model.prompt_encoder.get_dense_pe(),
             sparse_prompt_embeddings=sparse_embeddings,
@@ -240,7 +240,7 @@ class SamPredictor:
         if not return_logits:
             masks = masks > self.model.mask_threshold
 
-        return masks, iou_predictions, low_res_masks
+        return masks, iou_predictions, low_res_masks, mask_tokens
 
     def get_image_embedding(self) -> torch.Tensor:
         """
