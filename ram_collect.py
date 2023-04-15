@@ -107,7 +107,7 @@ def process_image(img_id):
         for mask_dict in ddup_masks:
             current_iou = iou(gt_mask, mask_dict['segmentation'])
 
-            if current_iou > max_iou:
+            if current_iou > max_iou and current_iou > 0.5:
                 max_iou = current_iou
                 best_feat = mask_dict['feat']
 
@@ -119,22 +119,34 @@ def process_image(img_id):
         'id': img_id,
         'feat': gt_feats,
         'relations': data['relations'],
-        'is_train': img_id in psg_dataset_file['test_image_ids'],
+        'is_train': img_id not in psg_dataset_file['test_image_ids'],
     }
-    np.savez(f'./feats/save_dict_{img_id}.npz', **save_entry)
+    np.savez(f'./share/feats_new/save_dict_{img_id}.npz', **save_entry)
 
+
+def save_random_file(path, id):
+    random_filename = f"{id}.txt"
+    file_path = os.path.join(path, random_filename)
+
+    with open(file_path, 'w') as f:
+        f.write("Process has ended.")
 
 if __name__ == "__main__":
     args = parse_arguments()
 
-    total_images = len(psg_dataset)
-    num_parts = 25
+    # total_images = len(psg_dataset)
+    total_images = 10000
+    starting_id = 0
+    num_parts = 10
     images_per_part = total_images // num_parts
 
-    start = args.id * images_per_part
-    end = start + images_per_part if args.id < num_parts - 1 else None
+    start = args.id * images_per_part + starting_id
+    end = starting_id + start + images_per_part if args.id < num_parts - 1 else None
 
     img_ids = list(psg_dataset.keys())[start:end]
 
     for img_id in tqdm(img_ids):
         process_image(img_id)
+    
+    # marking as ended
+    save_random_file('.', f'{starting_id}_{args.id}')

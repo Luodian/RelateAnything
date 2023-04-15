@@ -10,3 +10,4 @@
 data
 feats/
 *.npz
+share/
