@@ -10,7 +10,6 @@ from PIL import Image, ImageDraw, ImageFont
 # Grounding DINO
 import GroundingDINO.groundingdino.datasets.transforms as T
 from GroundingDINO.groundingdino.models import build_model
-from GroundingDINO.groundingdino.util import box_ops
 from GroundingDINO.groundingdino.util.slconfig import SLConfig
 from GroundingDINO.groundingdino.util.utils import clean_state_dict, get_phrases_from_posmap
 
@@ -20,7 +19,7 @@ import cv2
 import numpy as np
 import matplotlib.pyplot as plt
 
-from transformers import AutoProcessor, Blip2ForConditionalGeneration
+from transformers import AutoProcessor, BlipForConditionalGeneration
 import torch
 import PIL
 
@@ -28,8 +27,29 @@ import sys
 sys.path.append("../")
 import sng_parser
 from pprint import pprint
-import pickle
-import time
+
+# from langchain.prompts import PromptTemplate
+# from langchain.chat_models import ChatOpenAI
+# from langchain.prompts.chat import (
+#     ChatPromptTemplate,
+#     HumanMessagePromptTemplate,
+# )
+# from langchain.chains import LLMChain
+# human_message_prompt = HumanMessagePromptTemplate(
+#     prompt=PromptTemplate(
+#         template="""You are now serving as a relation detection model from given sentence. If there are multiple relations, please output multiple lines following the format. \n
+#                     [Insert sentence here] 
+#                     For example: \n
+#                     Identify the subject, relation, and object in the following sentence: President Obama and President Trump shaking hands. \n
+#                     Subject: President Obama \n
+#                     Relation: shaking hands \n
+#                     Object: President Trump \n
+#                     Please type in the sentence you want to detect the relation from: {sentence}?""",
+#         input_variables=["sentence"],
+#     )
+# )
+
+# os.environ['OPENAI_API_KEY'] = "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"
 
 def load_image(image_path):
     # load image
@@ -149,7 +169,7 @@ if __name__ == "__main__":
         "--sam_checkpoint", type=str, required=True, help="path to checkpoint file"
     )
     parser.add_argument("--input_image", type=str, required=True, help="path to image file")
-    parser.add_argument("--text_prompt", type=str, required=True, help="text prompt")
+    # parser.add_argument("--text_prompt", type=str, required=True, help="text prompt")
     parser.add_argument(
         "--output_dir", "-o", type=str, default="outputs", required=True, help="output directory"
     )
@@ -165,7 +185,7 @@ if __name__ == "__main__":
     grounded_checkpoint = args.grounded_checkpoint  # change the path of the model
     sam_checkpoint = args.sam_checkpoint
     image_path = args.input_image
-    text_prompt = args.text_prompt
+    # text_prompt = args.text_prompt
     output_dir = args.output_dir
     box_threshold = args.box_threshold
     text_threshold = args.box_threshold
@@ -181,8 +201,8 @@ if __name__ == "__main__":
     # visualize raw image
     image_pil.save(os.path.join(output_dir, "raw_image.jpg"))
 
-    processor = AutoProcessor.from_pretrained("Salesforce/blip2-flan-t5-xxl")
-    captioner = Blip2ForConditionalGeneration.from_pretrained("Salesforce/blip2-flan-t5-xxl", torch_dtype=torch.float16)
+    processor = AutoProcessor.from_pretrained("Salesforce/blip-image-captioning-large")
+    captioner = BlipForConditionalGeneration.from_pretrained("Salesforce/blip-image-captioning-large", torch_dtype=torch.float16)
 
     device = "cuda" if torch.cuda.is_available() else "cpu"
     captioner.to(device)
@@ -192,6 +212,11 @@ if __name__ == "__main__":
     generated_ids = captioner.generate(**inputs, max_new_tokens=20)
     generated_text = processor.batch_decode(generated_ids, skip_special_tokens=True)[0].strip()
     print(generated_text)
+
+    # chat_prompt_template = ChatPromptTemplate.from_messages([human_message_prompt])
+    # chat = ChatOpenAI(temperature=0.9)
+    # chain = LLMChain(llm=chat, prompt=chat_prompt_template)
+    # print(chain.run(generated_text))
 
     # official example
     graph = sng_parser.parse(generated_text)

@@ -5,3 +5,6 @@
 *.pyc
 *.pth
 .vscode/*
+outputs/*
+GroundingDINO/build/*
+*.egg-info
