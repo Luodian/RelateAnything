@@ -315,6 +315,16 @@ class RamPredictor(object):
         self.model.eval()
 
     def predict(self, batch_embeds, pred_keep_num=100):
+        """
+        Parameters
+        ----------
+            batch_embeds: (batch_size=1, token_num, feature_size)
+            pred_keep_num: int
+        Returns
+        -------
+            batch_pred: (batch_size, relation_num, object_num, object_num)
+            pred_rels: [[sub_id, obj_id, rel_id], ...]
+        """
         if not isinstance(batch_embeds, torch.Tensor):
             batch_embeds = torch.asarray(batch_embeds)
         batch_embeds = batch_embeds.to(torch.float32).to(self.device)
@@ -354,8 +364,6 @@ class RamPredictor(object):
             batch_target = batch_data[1]
             gt_rels = batch_data[2]
             batch_pred, pred_rels = self.predict(batch_embeds)
-            import pdb
-            pdb.set_trace()
             this_recall_20 = get_recall_N(
                 batch_pred, batch_target, object_num=20)
             this_recall_50 = get_recall_N(
