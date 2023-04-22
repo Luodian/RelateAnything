@@ -282,6 +282,8 @@ class RamTrainer(object):
                             0], loss.item(),
                         running_avg_loss/num_finished_step, recall_20.item()))
             self.lr_scheduler.step()
+            if not os.path.exists(self.config.output_dir):
+                os.makedirs(self.config.output_dir)
             save_path = os.path.join(
                 self.config.output_dir, 'epoch_{}.pth'.format(epoch_idx + 1))
             print('Save epoch={} checkpoint to {}'.format(
