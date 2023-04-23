@@ -343,11 +343,11 @@ class RamPredictor(object):
         # subject, object, relation
         for index in topk_indices:
             pred_relation = index // (
-                batch_pred.shape[1] ** 2)
+                batch_pred.shape[2] ** 2)
             index_subject_object = index % (
-                batch_pred.shape[1] ** 2)
-            pred_subject = index_subject_object // batch_pred.shape[1]
-            pred_object = index_subject_object % batch_pred.shape[1]
+                batch_pred.shape[2] ** 2)
+            pred_subject = index_subject_object // batch_pred.shape[2]
+            pred_object = index_subject_object % batch_pred.shape[2]
             pred = [pred_subject.item(),
                     pred_object.item(),
                     pred_relation.item()]

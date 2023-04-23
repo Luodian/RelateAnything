@@ -16,11 +16,15 @@ from detectron2.data.detection_utils import read_image
 from detectron2.utils.colormap import colormap
 from panopticapi.utils import rgb2id
 
-import argparse
+import argparse, os
 
 def parse_arguments():
     parser = argparse.ArgumentParser()
     parser.add_argument('--id', type=int, help='ID of the part to process')
+    parser.add_argument('--start_id', type=int, help='ID to start the process')
+    parser.add_argument('--num_parts', type=int, help='ID to start the process')
+    parser.add_argument('--total_images', type=int, help='ID to start the process')
+
     args = parser.parse_args()
     return args
 
@@ -99,29 +103,49 @@ def process_image(img_id):
     ddup_masks = sort_and_deduplicate(sam_masks)
 
     # GT matching
-    gt_feats = []
-    for gt_mask in gt_masks:
+    gt_index_mgt = []
+    for mask_id, mask_dict in enumerate(ddup_masks):
         max_iou = 0
-        best_feat = None
-
-        for mask_dict in ddup_masks:
+        for gt_mask_id, gt_mask in enumerate(gt_masks):
             current_iou = iou(gt_mask, mask_dict['segmentation'])
+            if current_iou > max_iou and current_iou > 0.6:
+                max_iou = current_iou
+                gt_index_mgt.append({gt_mask_id: mask_id})
 
+    gt_index_gtm = []
+    for gt_mask_id, gt_mask in enumerate(gt_masks):
+        max_iou = 0
+        for mask_id, mask_dict in enumerate(ddup_masks):
+            current_iou = iou(gt_mask, mask_dict['segmentation'])
             if current_iou > max_iou and current_iou > 0.5:
                 max_iou = current_iou
-                best_feat = mask_dict['feat']
+                gt_index_gtm.append({gt_mask_id: mask_id})
+                
+    common = [x for x in gt_index_gtm if x in gt_index_mgt]
 
-        gt_feats.append(best_feat)
+    # convert gt_index to a dictionary
+    gt_dict = {}
+    for d in common:
+        gt_dict.update(d)
+    gt_list = list(gt_dict.keys())
 
-    gt_feats = np.array(gt_feats)
-    
+    # relation idx swapping
+    relations = data['relations'].copy()
+    new_relations = []
+    for sublist in relations:
+        if all(x in gt_dict for x in sublist[:-1]):
+            new_sublist = [gt_dict[x] for x in sublist[:-1]] + [sublist[-1]] 
+            new_relations.append(new_sublist)
+
+    ddup_feat = np.array([mask['feat'] for mask in ddup_masks])
+
     save_entry = {
         'id': img_id,
-        'feat': gt_feats,
-        'relations': data['relations'],
+        'feat': ddup_feat,
+        'relations': new_relations,
         'is_train': img_id not in psg_dataset_file['test_image_ids'],
     }
-    np.savez(f'./share/feats_new/save_dict_{img_id}.npz', **save_entry)
+    np.savez(f'./share/feats_0420/save_dict_{img_id}.npz', **save_entry)
 
 
 def save_random_file(path, id):
@@ -135,16 +159,17 @@ if __name__ == "__main__":
     args = parse_arguments()
 
     # total_images = len(psg_dataset)
-    total_images = 10000
-    starting_id = 0
-    num_parts = 10
+    total_images = args.total_images
+    if total_images == 0:
+        total_images = len(psg_dataset)
+    starting_id = args.start_id
+    num_parts = args.num_parts
     images_per_part = total_images // num_parts
 
     start = args.id * images_per_part + starting_id
-    end = starting_id + start + images_per_part if args.id < num_parts - 1 else None
-
+    end = start + images_per_part
     img_ids = list(psg_dataset.keys())[start:end]
-
+    
     for img_id in tqdm(img_ids):
         process_image(img_id)
     
