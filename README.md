@@ -12,6 +12,8 @@
 
 Relate Anything Model is capable of taking an image as input and utilizing SAM to identify the corresponding mask within the image. Subsequently, RAM can provide an analysis of the relationship between any arbitrary objects mask.
 
+[![demo.png](https://i.postimg.cc/CKh8tSB4/demo.png)](https://postimg.cc/k2HDRryV)
+
 ## Examples
 
 Our current demo supports:
@@ -48,6 +50,12 @@ conda env create -f environment.yml
 ```
 
 Make sure to use `segment_anything` in this repository, which includes the mask feature extraction operation.
+
+Download the pretrained model
+1. SAM: [link](https://dl.fbaipublicfiles.com/segment_anything/sam_vit_h_4b8939.pth)
+2. RAM: [link](https://1drv.ms/u/s!AgCc-d5Aw1cumQapZwcaKob8InQm?e=qyMeTS)
+
+Place these two models in `./checkpoints/` from the root directory.
 
 Run our demo locally by running the following command:
 
