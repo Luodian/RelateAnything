@@ -1,5 +1,5 @@
 <p align="center" width="100%">
-<img src="https://i.postimg.cc/25yJ4qFp/ram_logo.png"  width="60%" height="30%">
+<img src="assets/ram_logo.png"  width="60%" height="30%">
 </p>
 
 # RAM: Relate-Anything-Model
