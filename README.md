@@ -5,6 +5,7 @@
 # RAM: Relate-Anything-Model
 
 The following developers have equally contributed to this project in their spare time, the names are in alphabetical order.
+
 [Zujin Guo](https://scholar.google.com/citations?user=G8DPsoUAAAAJ&hl=zh-CN), 
 [Bo Li](https://brianboli.com/), 
 [Jingkang Yang](https://jingkang50.github.io/), 
