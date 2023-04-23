@@ -14,7 +14,7 @@
 
 ---
 
-🚀 🚀 🚀 This is a random demo that combine Meta's [Segment-Anything](https://segment-anything.com/) model with the ECCV'22 paper: [Panoptic Scene Graph Generation](https://psgdataset.org/). 
+🚀 🚀 🚀 This is a demo that combine Meta's [Segment-Anything](https://segment-anything.com/) model with the ECCV'22 paper: [Panoptic Scene Graph Generation](https://psgdataset.org/). 
 
 🔥🔥🔥 Please star our codebase [OpenPSG](https://github.com/Jingkang50/OpenPSG) and [RAM](https://github.com/Luodian/RelateAnything) if you find it useful/interesting.
 
@@ -22,7 +22,9 @@
 
 [[`Dataset`](https://psgdataset.org/)]
 
-Relate Anything Model is capable of taking an image as input and utilizing SAM to identify the corresponding mask within the image. Subsequently, RAM can provide an analysis of the relationship between any arbitrary objects mask.
+Relate Anything Model is capable of taking an image as input and utilizing SAM to identify the corresponding mask within the image. Subsequently, RAM can provide an analysis of the relationship between any arbitrary objects mask. 
+
+The object masks are generated using SAM. RAM was trained to detect the relationships between the object masks using the OpenPSG dataset, and the specifics of this method are outlined in a subsequent section.
 
 [![demo.png](https://i.postimg.cc/CKh8tSB4/demo.png)](https://postimg.cc/k2HDRryV)
 
