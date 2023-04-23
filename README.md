@@ -77,7 +77,7 @@ Run our demo locally by running the following command:
 python app.py
 ```
 
-## Developers
+<!-- ## Developers
 
 We have equally contributed to this project in our spare time, in alphabetical order.
 [Zujin Guo](https://scholar.google.com/citations?user=G8DPsoUAAAAJ&hl=zh-CN), 
@@ -85,7 +85,7 @@ We have equally contributed to this project in our spare time, in alphabetical o
 [Jingkang Yang](https://jingkang50.github.io/), 
 [Zijian Zhou](https://sites.google.com/view/zijian-zhou/home).
 
-**[MMLab@NTU](https://www.mmlab-ntu.com/)** & **[VisCom Lab, KCL](https://viscom.nms.kcl.ac.uk/)**
+**[MMLab@NTU](https://www.mmlab-ntu.com/)** & **[VisCom Lab, KCL](https://viscom.nms.kcl.ac.uk/)** -->
 
 ## Citation
 If you find this project helpful for your research, please consider citing the following BibTeX entry.
