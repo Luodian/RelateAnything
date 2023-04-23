@@ -337,23 +337,29 @@ class RamPredictor(object):
             batch_pred[:, :, idx_i, idx_i] = -9999
         batch_pred = batch_pred.sigmoid()
 
-        # find topk
         pred_rels = []
-        _, topk_indices = torch.topk(
-            batch_pred.reshape([-1, ]), k=pred_keep_num)
+        for idx in range(batch_embeds.shape[0]):
+            this_pred = batch_pred[idx]
+            # find topk
+            this_pred_rels = []
+            _, topk_indices = torch.topk(
+                this_pred.reshape([-1, ]), k=pred_keep_num)
 
-        # subject, object, relation
-        for index in topk_indices:
-            pred_relation = index // (
-                batch_pred.shape[1] ** 2)
-            index_subject_object = index % (
-                batch_pred.shape[1] ** 2)
-            pred_subject = index_subject_object // batch_pred.shape[1]
-            pred_object = index_subject_object % batch_pred.shape[1]
-            pred = [pred_subject.item(),
-                    pred_object.item(),
-                    pred_relation.item()]
-            pred_rels.append(pred)
+            # subject, object, relation
+            for index in topk_indices:
+                pred_relation = index // (
+                    this_pred.shape[1] ** 2)
+                index_subject_object = index % (
+                    this_pred.shape[1] ** 2)
+                pred_subject = index_subject_object // this_pred.shape[1]
+                pred_object = index_subject_object % this_pred.shape[1]
+                pred = [pred_subject.item(),
+                        pred_object.item(),
+                        pred_relation.item()]
+                this_pred_rels.append(pred)
+            pred_rels.append(this_pred_rels)
+        if batch_embeds.shape[0] == 1:
+            pred_rels = pred_rels[0]
         return batch_pred, pred_rels
 
     def eval(self):
