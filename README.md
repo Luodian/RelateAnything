@@ -10,11 +10,11 @@
 [Jingkang Yang](https://jingkang50.github.io/), 
 [Zijian Zhou](https://sites.google.com/view/zijian-zhou/home).
 
-**Affiliate: [MMLab@NTU](https://www.mmlab-ntu.com/)** & **[VisCom Lab, KCL/Tongji](https://viscom.nms.kcl.ac.uk/)**
+**Affiliate: [MMLab@NTU](https://www.mmlab-ntu.com/)** & **[VisCom Lab, KCL/TongJi](https://viscom.nms.kcl.ac.uk/)**
 
 ---
 
-🚀 🚀 🚀 This is a random demo that combine Meta's Segment-Anything model with the ECCV'22 paper: [Panoptic Scene Graph Generation](https://psgdataset.org/). 
+🚀 🚀 🚀 This is a random demo that combine Meta's [Segment-Anything](https://segment-anything.com/) model with the ECCV'22 paper: [Panoptic Scene Graph Generation](https://psgdataset.org/). 
 
 🔥🔥🔥 Please star our codebase [OpenPSG](https://github.com/Jingkang50/OpenPSG) and [RAM](https://github.com/Luodian/RelateAnything) if you find it useful/interesting.
 
