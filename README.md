@@ -1,4 +1,6 @@
-[![ram-logo.png](https://i.postimg.cc/25yJ4qFp/ram-logo.png)](https://postimg.cc/t102b4MD)
+<p align="center" width="100%">
+<img src="https://i.postimg.cc/25yJ4qFp/ram-logo.png"  width="60%" height="30%">
+</p>
 
 # RAM: Relate-Anything-Model
 
