@@ -4,9 +4,19 @@
 
 # RAM: Relate-Anything-Model
 
+**Developers (alphabetical order):** 
+[Zujin Guo](https://scholar.google.com/citations?user=G8DPsoUAAAAJ&hl=zh-CN), 
+[Bo Li](https://brianboli.com/), 
+[Jingkang Yang](https://jingkang50.github.io/), 
+[Zijian Zhou](https://sites.google.com/view/zijian-zhou/home).
+
+**Affiliate: [MMLab@NTU](https://www.mmlab-ntu.com/)** & **[VisCom Lab, KCL](https://viscom.nms.kcl.ac.uk/)**
+
+---
+
 🚀 🚀 🚀 This is a random demo that combine Meta's Segment-Anything model with the ECCV'22 paper: [Panoptic Scene Graph Generation](https://psgdataset.org/). 
 
-🔥🔥🔥 Please star our codebase [openpsg](https://github.com/Jingkang50/OpenPSG) and [RAM](https://github.com/Luodian/RelateAnything) if you find it useful / interesting.
+🔥🔥🔥 Please star our codebase [OpenPSG](https://github.com/Jingkang50/OpenPSG) and [RAM](https://github.com/Luodian/RelateAnything) if you find it useful/interesting.
 
 [[`Huggingface Demo`](#method)]
 
@@ -41,6 +51,8 @@ Here are some examples of the Relate Anything Model in action about playing socc
 ![](https://i.postimg.cc/9QpRyK8w/coord.png)
 
 ## Method
+
+RAM utilizes the Segment Anything Model (SAM) to accurately mask objects within an image, and subsequently extract features corresponding to the segmented regions. Employ a Transformer module to facilitate feature interaction among distinct objects, and ultimately compute pairwise object relationships, thereby categorizing their interrelations.
 
 ## Setup
 
