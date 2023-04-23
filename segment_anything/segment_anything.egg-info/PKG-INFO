@@ -1,6 +1,0 @@
-Metadata-Version: 2.1
-Name: segment-anything
-Version: 1.0
-Provides-Extra: all
-Provides-Extra: dev
-License-File: LICENSE

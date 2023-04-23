@@ -5,3 +5,9 @@
 *.pyc
 *.pth
 .vscode/*
+
+.ipynb_checkpoints/
+data
+feats/
+*.npz
+share/
