@@ -157,6 +157,13 @@ def concatenate_images_vertical(image1, image2):
 def relate_selected(input_image, k, coords):
     # load image
     pil_image = input_image.convert('RGBA')
+
+    w, h = pil_image.size
+    if w > 800:
+        pil_image.thumbnail((800, 800*h/w))
+        input_image.thumbnail((800, 800*h/w))
+        coords = str(int(int(coords.split(',')[0]) * 800 / w)) + ',' + str(int(int(coords.split(',')[1]) * 800 / w))
+        
     image = np.array(input_image)
     sam_masks = mask_generator.generate(image)
     # get old mask
@@ -207,6 +214,10 @@ def relate_selected(input_image, k, coords):
 def relate_anything(input_image, k):
     # load image
     pil_image = input_image.convert('RGBA')
+    w, h = pil_image.size
+    if w > 800:
+        pil_image.thumbnail((800, 800*h/w))
+        input_image.thumbnail((800, 800*h/w))
     image = np.array(input_image)
     sam_masks = mask_generator.generate(image)
     filtered_masks = sort_and_deduplicate(sam_masks)

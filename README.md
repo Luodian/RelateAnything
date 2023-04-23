@@ -6,15 +6,6 @@
 
 🔥🔥🔥 Please star our codebase [openpsg](https://github.com/Jingkang50/OpenPSG) and [RAM](https://github.com/Luodian/RelateAnything) if you find it useful / interesting.
 
-**Developers (alphabetical order):** 
-[Zujin Guo](https://scholar.google.com/citations?user=G8DPsoUAAAAJ&hl=zh-CN), 
-[Bo Li](https://brianboli.com/), 
-[Jingkang Yang](https://jingkang50.github.io/), 
-[Zijian Zhou](https://sites.google.com/view/zijian-zhou/home).
-
-**[MMLab@NTU](https://www.mmlab-ntu.com/)** & **[VisCom Lab, KCL](https://viscom.nms.kcl.ac.uk/)**
-
-
 [[`Huggingface Demo`](#method)]
 
 [[`Dataset`](https://psgdataset.org/)]
@@ -23,21 +14,27 @@ Relate Anything Model is capable of taking an image as input and utilizing SAM t
 
 ## Examples
 
+Our current demo supports:
+
+(1) generate arbitary objects masks and reason relationships in between. 
+
+(2) given coordinates then generate object masks and reason the relationship between given objects and other objects in the image.
+
+We will soon add support for detecting semantic labels of objects with the help of [OVSeg](https://github.com/facebookresearch/ov-seg).
+
 Here are some examples of the Relate Anything Model in action about playing soccer, dancing, and playing basketball.
 
-![](./assets/basketball.gif)
+<!-- ![](./assets/basketball.gif) -->
 
-![](./assets/playing_basketball4.png)
+![](./assets/basketball.png)
 
-![](./assets/playing_basketball2.png)
+![](./assets/soccer.png)
 
-![](./assets/playing_basketball3.png)
+![](https://i.postimg.cc/43VkhRNp/shaking-hands.png)
 
-![](./assets/playing_soccer1.png)
+[![collie.png](https://i.postimg.cc/zvV1vbLG/collie.png)](https://postimg.cc/hQWY3Gbk)
 
-![](./assets/playing_soccer2.png)
-
-![](./assets/playing_soccer3.png)
+![](https://i.postimg.cc/9QpRyK8w/coord.png)
 
 ## Method
 
@@ -57,6 +54,16 @@ Run our demo locally by running the following command:
 ```bash
 python app.py
 ```
+
+## Developers
+
+**(alphabetical order)** 
+[Zujin Guo](https://scholar.google.com/citations?user=G8DPsoUAAAAJ&hl=zh-CN), 
+[Bo Li](https://brianboli.com/), 
+[Jingkang Yang](https://jingkang50.github.io/), 
+[Zijian Zhou](https://sites.google.com/view/zijian-zhou/home).
+
+**[MMLab@NTU](https://www.mmlab-ntu.com/)** & **[VisCom Lab, KCL](https://viscom.nms.kcl.ac.uk/)**
 
 ## Citation
 If you find this project helpful for your research, please consider citing the following BibTeX entry.
