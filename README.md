@@ -90,6 +90,10 @@ We have equally contributed to this project in our spare time, in alphabetical o
 
 **[MMLab@NTU](https://www.mmlab-ntu.com/)** & **[VisCom Lab, KCL](https://viscom.nms.kcl.ac.uk/)** -->
 
+## Acknowledgement
+
+We thank [Chunyuan Li](https://chunyuan.li/) for his help in setting up the demo.
+
 ## Citation
 If you find this project helpful for your research, please consider citing the following BibTeX entry.
 ```BibTex
