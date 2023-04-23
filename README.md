@@ -55,7 +55,15 @@ Here are some examples of the Relate Anything Model in action about playing socc
 
 ## Method
 
-RAM utilizes the Segment Anything Model (SAM) to accurately mask objects within an image, and subsequently extract features corresponding to the segmented regions. Employ a Transformer module to facilitate feature interaction among distinct objects, and ultimately compute pairwise object relationships, thereby categorizing their interrelations.
+![](./assets/method.png)
+
+Our method is based on the winning solution of the PSG competition, with some modifications. The original report can be found [here](https://arxiv.org/abs/2302.02651).
+
+Inference
+Our approach uses the Segment Anything Model (SAM) to identify and mask objects in an image. The model then extracts features for each segmented object. We use a Transformer module to enable interaction between the object features, allowing us to compute pairwise object relationships and categorize their interrelations.
+
+Training
+We train our model using [the PSG dataset](http://psgdataset.org/). For each training PSG image, SAM segments multiple objects, but only a few of them match the ground truth (GT) masks in PSG. We perform a simple matching between SAM's predictions and the GT masks based on their intersection-over-union (IOU) scores, so that (almost) every GT mask is assigned to a SAM mask. We then re-generate the relation map according to SAM's masks. With the GT data prepared, we train our model using cross entropy loss, as shown in the figure above.
 
 ## Setup
 
