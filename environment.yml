@@ -13,3 +13,5 @@ dependencies:
     - openmim
     - pre-commit
     - git+https://github.com/Jingkang50/OpenPSG
+    - mmcv
+    - segment-anything

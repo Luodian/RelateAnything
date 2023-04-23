@@ -1,8 +1,6 @@
 import sys
 sys.path.append('.')
 
-import matplotlib.pyplot
-import pycocotools
 from segment_anything import build_sam, SamPredictor, SamAutomaticMaskGenerator
 import numpy as np
 import gradio as gr
@@ -10,7 +8,6 @@ from PIL import Image, ImageDraw, ImageFont
 from utils import iou, sort_and_deduplicate, relation_classes, MLP, show_anns, show_mask
 import torch
 import matplotlib.pyplot as plt
-import random
 
 import torch
 import torch.nn as nn
@@ -48,7 +45,6 @@ config = dict(
     load_from=model_path,
 )
 config = Config(config)
-
 
 class Predictor(RamPredictor):
     def __init__(self,config):
@@ -250,7 +246,8 @@ def relate_anything(input_image, k):
 
 DESCRIPTION = '''# Relate-Anyting
 🚀 🚀 🚀 This is a random demo that combine Meta's Segment-Anything model with the ECCV'22 paper: [Panoptic Scene Graph Generation](https://psgdataset.org/). 
-Please star our codebase [openpsg](https://github.com/Jingkang50/OpenPSG) and [ram]() if you find it useful / interesting.
+
+🔥🔥🔥 Please star our codebase [openpsg](https://github.com/Jingkang50/OpenPSG) and [RAM](https://github.com/Luodian/RelateAnything) if you find it useful / interesting.
 '''
 
 block = gr.Blocks()
