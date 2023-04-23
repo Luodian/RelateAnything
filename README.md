@@ -1,4 +1,4 @@
-![](./assets/ram_logo.png)
+[![ram-logo.png](https://i.postimg.cc/25yJ4qFp/ram-logo.png)](https://postimg.cc/t102b4MD)
 
 # RAM: Relate-Anything-Model
 
@@ -65,7 +65,7 @@ python app.py
 
 ## Developers
 
-**(alphabetical order)** 
+We have equally contributed to this project in our spare time, in alphabetical order.
 [Zujin Guo](https://scholar.google.com/citations?user=G8DPsoUAAAAJ&hl=zh-CN), 
 [Bo Li](https://brianboli.com/), 
 [Jingkang Yang](https://jingkang50.github.io/), 
