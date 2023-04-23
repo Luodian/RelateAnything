@@ -10,7 +10,7 @@
 [Jingkang Yang](https://jingkang50.github.io/), 
 [Zijian Zhou](https://sites.google.com/view/zijian-zhou/home).
 
-**Affiliate: [MMLab@NTU](https://www.mmlab-ntu.com/)** & **[VisCom Lab, KCL](https://viscom.nms.kcl.ac.uk/)**
+**Affiliate: [MMLab@NTU](https://www.mmlab-ntu.com/)** & **[VisCom Lab, KCL/Tongji](https://viscom.nms.kcl.ac.uk/)**
 
 ---
 
