@@ -11,4 +11,3 @@ data
 feats/
 *.npz
 share/
-outputs/*
