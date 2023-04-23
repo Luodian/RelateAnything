@@ -13,4 +13,3 @@ dependencies:
     - openmim
     - pre-commit
     - git+https://github.com/Jingkang50/OpenPSG
-    - git+https://github.com/facebookresearch/segment-anything.git
