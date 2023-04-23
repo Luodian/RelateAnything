@@ -30,7 +30,6 @@ def draw_mask(mask, draw):
     for coord in nonzero_coords:
         draw.point(coord[::-1], fill=color)
 
-
 # plt.imshow(image)
 # show_points(input_point, input_label, plt.gca())
 # plt.show()
