@@ -19,7 +19,7 @@ The following developers have equally contributed to this project in their spare
 
 🔥🔥🔥 Please star our codebase [OpenPSG](https://github.com/Jingkang50/OpenPSG) and [RAM](https://github.com/Luodian/RelateAnything) if you find it useful/interesting.
 
-[[`Huggingface Demo`](#method)]
+[[`Huggingface Demo`](https://huggingface.co/spaces/luodian/relate-anything)]
 
 [[`Dataset`](https://psgdataset.org/)]
 
