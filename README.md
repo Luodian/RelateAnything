@@ -49,7 +49,7 @@ Here are some examples of the Relate Anything Model in action about playing socc
 
 ![](https://i.postimg.cc/43VkhRNp/shaking-hands.png)
 
-[![collie.png](https://i.postimg.cc/zvV1vbLG/collie.png)](https://postimg.cc/hQWY3Gbk)
+![](https://i.postimg.cc/zvV1vbLG/collie.png)
 
 ![](https://i.postimg.cc/9QpRyK8w/coord.png)
 
