@@ -7,14 +7,9 @@ import gradio as gr
 from PIL import Image, ImageDraw, ImageFont
 from utils import iou, sort_and_deduplicate, relation_classes, MLP, show_anns, show_mask
 import torch
-import matplotlib.pyplot as plt
 
-import torch
-import torch.nn as nn
-import torch.optim as optim
-import torch.nn.functional as F
 from ram_train_eval import RamModel,RamPredictor
-from mmcv import Config
+from mmengine.config import Config
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
@@ -23,13 +18,12 @@ hidden_size = 256
 num_classes = 56
 
 # load sam model
-sam = build_sam(checkpoint="segment_anything/checkpoints/sam_vit_h_4b8939.pth").to(device)
+sam = build_sam(checkpoint="./checkpoints/sam_vit_h_4b8939.pth").to(device)
 predictor = SamPredictor(sam)
 mask_generator = SamAutomaticMaskGenerator(sam)
 
-
 # load ram model
-model_path = "epoch_12.pth"
+model_path = "./checkpoints/ram_epoch12.pth"
 config = dict(
     model=dict(
         pretrained_model_name_or_path='bert-base-uncased',
@@ -98,7 +92,7 @@ def vis_selected(pil_image, coords):
     yield [pil_image]
 
 
-def create_title_image(word1, word2, word3, width, font_path='OpenSans-Bold.ttf'):
+def create_title_image(word1, word2, word3, width, font_path='./assets/OpenSans-Bold.ttf'):
     # Define the colors to use for each word
     color_red = (255, 0, 0)
     color_black = (0, 0, 0)
@@ -245,9 +239,10 @@ def relate_anything(input_image, k):
     yield pil_image_list
 
 DESCRIPTION = '''# Relate-Anyting
-🚀 🚀 🚀 This is a random demo that combine Meta's Segment-Anything model with the ECCV'22 paper: [Panoptic Scene Graph Generation](https://psgdataset.org/). 
 
-🔥🔥🔥 Please star our codebase [openpsg](https://github.com/Jingkang50/OpenPSG) and [RAM](https://github.com/Luodian/RelateAnything) if you find it useful / interesting.
+### 🚀 🚀 🚀 This is a demo that combine Meta's Segment-Anything model with the ECCV'22 paper: [Panoptic Scene Graph Generation](https://psgdataset.org/). 
+
+### 🔥🔥🔥 Please star our codebase [openpsg](https://github.com/Jingkang50/OpenPSG) and [RAM](https://github.com/Luodian/RelateAnything) if you find it useful / interesting.
 '''
 
 block = gr.Blocks()
@@ -256,7 +251,7 @@ with block:
     gr.Markdown(DESCRIPTION)
     with gr.Row():
         with gr.Column():
-            input_image = gr.Image(source="upload", type="pil", value="images/dog.jpg")
+            input_image = gr.Image(source="upload", type="pil", value="assets/dog.jpg")
             
             with gr.Tab("Relate Anything"):
                 num_relation = gr.Slider(label="How many relations do you want to see", minimum=1, maximum=20, value=5, step=1)

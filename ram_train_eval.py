@@ -6,7 +6,8 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-from mmcv import Config, ProgressBar
+from mmengine.config import Config
+from mmengine.utils import ProgressBar
 from transformers import AutoConfig, AutoModel
 
 

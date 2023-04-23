@@ -1,6 +1,17 @@
 ![](./assets/ram_logo.png)
 
 # RAM: Relate-Anything-Model
+
+**[S-lab, NTU](https://www.mmlab-ntu.com/)**
+
+[[`Huggingface Demo`](#method)]
+
+[[`Dataset`](https://psgdataset.org/)]
+
+### 🚀 🚀 🚀 This is a random demo that combine Meta's Segment-Anything model with the ECCV'22 paper: [Panoptic Scene Graph Generation](https://psgdataset.org/). 
+
+### 🔥🔥🔥 Please star our codebase [openpsg](https://github.com/Jingkang50/OpenPSG) and [RAM](https://github.com/Luodian/RelateAnything) if you find it useful / interesting.
+
 Given a random image:
 - SAM segments any objects.
 - RAM identifies any plausible relations between them.
@@ -9,14 +20,9 @@ Given a random image:
 
 To setup the environment, we use conda to manage our dependencies.
 
-Our developers use CUDA 10.1 to do experiments.
-
 You can specify the appropriate cudatoolkit version to install on your machine in the environment.yml file, and then run the following to create the conda environment:
 
-conda env create -f environment.yml
-
-
-
+`conda env create -f environment.yml`
 
 
 ## Citation
