@@ -84,11 +84,12 @@ Download the pretrained model
 
 Place these two models in `./checkpoints/` from the root directory.
 
-Run our demo locally by running the following command:
-
-```bash
-python app.py
-```
+### **Gradio demo**
+- We also provide a UI for testing our method that is built with gradio. This demo also supports generating new directions on the fly! Running the following command in a terminal will launch the demo: 
+    ```
+    python app.py
+    ```
+- This demo is also hosted on HuggingFace [here](https://huggingface.co/spaces/mmlab-ntu/relate-anything-model).
 
 <!-- ## Developers
 
