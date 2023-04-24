@@ -56,7 +56,7 @@ Here are some examples of the Relate Anything Model in action about playing socc
 ## Method
 
 <p align="center" width="100%">
-<img src="./assets/method.png"  width="60%" height="30%">
+<img src="./assets/method.png"  width="90%">
 </p>
 
 Our method is based on the winning solution of the PSG competition, with some modifications. The original report can be found [here](https://arxiv.org/abs/2302.02651).
