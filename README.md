@@ -21,6 +21,8 @@ The following developers have equally contributed to this project in their spare
 
 [[`Huggingface Demo`](https://huggingface.co/spaces/mmlab-ntu/relate-anything-model)]
 
+[[`Gradio Demo (Faster)`](https://bf5e65e511446cbe60.gradio.live/)]
+
 [[`Dataset`](https://psgdataset.org/)]
 
 Relate Anything Model is capable of taking an image as input and utilizing SAM to identify the corresponding mask within the image. Subsequently, RAM can provide an analysis of the relationship between any arbitrary objects mask. 
