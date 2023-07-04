@@ -11,6 +11,9 @@ dependencies:
   - pip
   - pip:
     - openmim
-    - mmcv==2.0.0
+    - mmcv-lite
+    - pre-commit
+    - gradio
+    - transformers
     - pre-commit
     - git+https://github.com/Jingkang50/OpenPSG
