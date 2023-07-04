@@ -23,7 +23,7 @@ predictor = SamPredictor(sam)
 mask_generator = SamAutomaticMaskGenerator(sam)
 
 # load ram model
-model_path = "./checkpoints/ram_epoch12.pth"
+model_path = "./checkpoints/epoch12.pth"
 config = dict(
     model=dict(
         pretrained_model_name_or_path='bert-base-uncased',
